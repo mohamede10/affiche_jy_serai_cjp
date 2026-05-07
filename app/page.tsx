@@ -6,7 +6,8 @@ import {
   CalendarIcon, MapPinIcon, ClockIcon, UserIcon, ChevronDownIcon,
   EnvelopeIcon, PhoneIcon, AcademicCapIcon, UserGroupIcon, 
   ChartBarIcon, BookOpenIcon, StarIcon, BriefcaseIcon,
-  CpuChipIcon, GlobeAltIcon, RocketLaunchIcon, TrophyIcon
+  CpuChipIcon, GlobeAltIcon, RocketLaunchIcon, TrophyIcon,
+  CircleStackIcon, ServerIcon, CloudArrowUpIcon
 } from '@heroicons/react/24/outline';
 
 export default function HomePage() {
@@ -41,19 +42,6 @@ export default function HomePage() {
     { time: '16:00 - 17:00', title: 'Clôture et remise des prix', speaker: 'Comité d\'organisation', day: 'Jour 2 - 16 Mai' },
   ];
 
-  const formationThemes = [
-    'Réseaux et Cybersécurité',
-    'Intégrations système (Administration des serveurs)',
-    'Développement d\'application mobile',
-    'Développement d\'application web',
-    'Programmation Arduino et Raspberry Pi',
-    'Configuration des serveurs sur cloud',
-    'Gestion de projet GitHub',
-    'Logiciel de collecte et de traitement de données',
-    'Marketing digital numérique',
-    'Atelier de découverte d\'un Fablab',
-  ];
-
   const partners = [
     { name: 'ANSUTEN', logo: '/img/ansuten.jpeg', category: 'Institutionnel' },
     { name: 'Guinée Dev', logo: '/img/guineedev.jpeg', category: 'Communauté' },
@@ -78,6 +66,49 @@ export default function HomePage() {
 
   return (
     <>
+      {/* Styles CSS pour l'animation */}
+      <style jsx global>{`
+        @keyframes fade-in-up {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(10px); }
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.8; }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes float-delayed {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(20px); }
+        }
+        @keyframes lineMove {
+          0% { stroke-dashoffset: 1000; }
+          100% { stroke-dashoffset: 0; }
+        }
+        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
+        .animate-bounce { animation: bounce 1.5s infinite; }
+        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+        .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delayed 6s ease-in-out infinite 1s; }
+        .circuit-line {
+          stroke-dasharray: 1000;
+          stroke-dashoffset: 1000;
+          animation: lineMove 3s ease-in-out forwards;
+        }
+      `}</style>
+
       {/* Navbar fixe */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0a0f2c]/95 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -87,18 +118,85 @@ export default function HomePage() {
           </div>
           <div className="flex gap-3">
             <Link href="/generateur/affiche" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-5 py-2 rounded-full transition">
-              Générer mon affiche
+              Générer mon affiche j'y serai
             </Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section avec circuit électronique animé */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0f2c] via-[#0e1a3a] to-[#1a1f4a]"></div>
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500 rounded-full blur-[100px]"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-[120px]"></div>
+        {/* Circuit électronique animé en SVG */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0a0f2c] via-[#0e1a3a] to-[#1a1f4a]">
+          {/* Icônes IA flottantes */}
+          <div className="absolute top-20 left-10 animate-float opacity-20">
+            <CpuChipIcon className="w-32 h-32 text-blue-400" />
+          </div>
+          <div className="absolute bottom-20 right-10 animate-float-delayed opacity-20">
+            <CircleStackIcon className="w-32 h-32 text-purple-400" />
+          </div>
+          <div className="absolute top-40 right-20 animate-float opacity-30">
+            <ServerIcon className="w-24 h-24 text-green-400" />
+          </div>
+          <div className="absolute bottom-40 left-20 animate-float-delayed opacity-25">
+            <CloudArrowUpIcon className="w-28 h-28 text-cyan-400" />
+          </div>
+          
+          {/* SVG Circuit Board */}
+          <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 1000 800" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{ stopColor: '#fbbf24', stopOpacity: 1 }} />
+                <stop offset="100%" style={{ stopColor: '#3b82f6', stopOpacity: 1 }} />
+              </linearGradient>
+              <linearGradient id="grad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style={{ stopColor: '#ec4899', stopOpacity: 1 }} />
+                <stop offset="100%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
+              </linearGradient>
+            </defs>
+            
+            {/* Lignes de circuit horizontales */}
+            <line x1="50" y1="150" x2="250" y2="150" stroke="url(#grad1)" strokeWidth="3" className="circuit-line" />
+            <line x1="350" y1="150" x2="650" y2="150" stroke="url(#grad1)" strokeWidth="3" className="circuit-line" style={{ animationDelay: '0.5s' }} />
+            <line x1="100" y1="300" x2="400" y2="300" stroke="url(#grad2)" strokeWidth="3" className="circuit-line" style={{ animationDelay: '1s' }} />
+            <line x1="500" y1="300" x2="900" y2="300" stroke="url(#grad2)" strokeWidth="3" className="circuit-line" style={{ animationDelay: '1.5s' }} />
+            <line x1="50" y1="500" x2="300" y2="500" stroke="url(#grad1)" strokeWidth="3" className="circuit-line" style={{ animationDelay: '2s' }} />
+            <line x1="700" y1="500" x2="950" y2="500" stroke="url(#grad1)" strokeWidth="3" className="circuit-line" style={{ animationDelay: '2.5s' }} />
+            <line x1="200" y1="700" x2="500" y2="700" stroke="url(#grad2)" strokeWidth="3" className="circuit-line" style={{ animationDelay: '3s' }} />
+            <line x1="600" y1="700" x2="900" y2="700" stroke="url(#grad2)" strokeWidth="3" className="circuit-line" style={{ animationDelay: '3.5s' }} />
+            
+            {/* Lignes verticales */}
+            <line x1="250" y1="100" x2="250" y2="300" stroke="url(#grad1)" strokeWidth="2" className="circuit-line" style={{ animationDelay: '4s' }} />
+            <line x1="650" y1="50" x2="650" y2="200" stroke="url(#grad2)" strokeWidth="2" className="circuit-line" style={{ animationDelay: '4.5s' }} />
+            <line x1="400" y1="200" x2="400" y2="500" stroke="url(#grad1)" strokeWidth="2" className="circuit-line" style={{ animationDelay: '5s' }} />
+            <line x1="300" y1="400" x2="300" y2="700" stroke="url(#grad2)" strokeWidth="2" className="circuit-line" style={{ animationDelay: '5.5s' }} />
+            <line x1="800" y1="350" x2="800" y2="600" stroke="url(#grad1)" strokeWidth="2" className="circuit-line" style={{ animationDelay: '6s' }} />
+            
+            {/* Points lumineux (circuit nodes) */}
+            <circle cx="250" cy="150" r="6" fill="#fbbf24" className="animate-pulse-glow" />
+            <circle cx="650" cy="150" r="6" fill="#3b82f6" className="animate-pulse-glow" style={{ animationDelay: '0.5s' }} />
+            <circle cx="400" cy="300" r="6" fill="#ec4899" className="animate-pulse-glow" style={{ animationDelay: '1s' }} />
+            <circle cx="800" cy="300" r="6" fill="#06b6d4" className="animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
+            <circle cx="150" cy="500" r="6" fill="#fbbf24" className="animate-pulse-glow" style={{ animationDelay: '2s' }} />
+            <circle cx="850" cy="500" r="6" fill="#3b82f6" className="animate-pulse-glow" style={{ animationDelay: '2.5s' }} />
+            <circle cx="350" cy="700" r="6" fill="#ec4899" className="animate-pulse-glow" style={{ animationDelay: '3s' }} />
+            <circle cx="750" cy="700" r="6" fill="#06b6d4" className="animate-pulse-glow" style={{ animationDelay: '3.5s' }} />
+          </svg>
+          
+          {/* Points lumineux supplémentaires */}
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-yellow-400 rounded-full animate-pulse-glow"></div>
+          <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-purple-400 rounded-full animate-pulse-glow" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-cyan-400 rounded-full animate-pulse-glow" style={{ animationDelay: '3s' }}></div>
+          
+          {/* Overlay sombre pour lisibilité */}
+          <div className="absolute inset-0 bg-black/50"></div>
+        </div>
+        
+        {/* Effets de lumière flous */}
+        <div className="absolute inset-0 z-0 opacity-30">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-500 rounded-full blur-[100px] animate-pulse-glow"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }}></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
@@ -107,7 +205,7 @@ export default function HomePage() {
               CJP - FODR 2026
               <span className="block text-yellow-500 text-3xl md:text-4xl mt-2">Forum du Développement et Réseaux</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto mb-8">
               Le plus grand rassemblement technologique de Guinée. Découvrez les technologies émergentes, 
               participez à des formations gratuites et connectez-vous avec des experts.
             </p>
@@ -129,15 +227,15 @@ export default function HomePage() {
           
           {/* Date et lieu avec icônes Tailwind */}
           <div className="mt-12 flex flex-wrap justify-center gap-4 text-white">
-            <div className="flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full backdrop-blur-sm">
+            <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full">
               <CalendarIcon className="w-5 h-5 text-yellow-400" />
               <span>15-16 Mai 2026</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full backdrop-blur-sm">
+            <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full">
               <MapPinIcon className="w-5 h-5 text-yellow-400" />
               <span>Université de Labé</span>
             </div>
-            <div className="flex items-center gap-2 bg-white/10 px-6 py-3 rounded-full backdrop-blur-sm">
+            <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-6 py-3 rounded-full">
               <ClockIcon className="w-5 h-5 text-yellow-400" />
               <span>09h00 - 17h00</span>
             </div>
@@ -145,8 +243,8 @@ export default function HomePage() {
         </div>
         
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a href="#about" className="text-white/50 hover:text-white transition">
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+          <a href="#about" className="text-white/70 hover:text-white transition">
             <ChevronDownIcon className="w-6 h-6" />
           </a>
         </div>
@@ -307,24 +405,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Thèmes de formation */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-800">Thèmes de formation</h2>
-            <div className="h-1 w-20 bg-yellow-500 mx-auto mt-4 rounded-full"></div>
-            <p className="text-gray-600 mt-4">Découvrez les domaines de formation proposés</p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3">
-            {formationThemes.map((theme, idx) => (
-              <span key={idx} className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-yellow-200 transition">
-                {theme}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Call to Action */}
       <section className="py-16 bg-gradient-to-r from-yellow-500 to-yellow-600">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -391,21 +471,6 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
-
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fade-in-up 0.8s ease-out; }
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(10px); }
-        }
-        .animate-bounce {
-          animation: bounce 1.5s infinite;
-        }
-      `}</style>
     </>
   );
 }
