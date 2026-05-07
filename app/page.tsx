@@ -221,9 +221,9 @@ export default function HomePage() {
               Le Forum et les ateliers aspirent à doter les étudiants des compétences techniques et des connaissances pratiques nécessaires pour exceller dans le domaine du développement web et des réseaux. L'impact attendu est la création d'une génération de professionnels bien préparés et innovants, prêts à relever les défis de demain.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <span className="bg-black/20 px-4 py-2 rounded-full text-black font-semibold">🚀 Booster l'employabilité</span>
-              <span className="bg-black/20 px-4 py-2 rounded-full text-black font-semibold">💼 Lutter contre le chômage</span>
-              <span className="bg-black/20 px-4 py-2 rounded-full text-black font-semibold">🌍 Lutter contre l'immigration</span>
+              <span className="bg-black/20 px-4 py-2 rounded-full text-black font-semibold">Booster l'employabilité</span>
+              <span className="bg-black/20 px-4 py-2 rounded-full text-black font-semibold">Lutter contre le chômage</span>
+              <span className="bg-black/20 px-4 py-2 rounded-full text-black font-semibold">Lutter contre l'immigration</span>
             </div>
           </div>
         </div>
